@@ -1,0 +1,42 @@
+{% extends('base.html.twig') %}
+
+{% block body%}
+
+<h2>List of all products with price greater than {{price}}</h2>
+<table class="table table-striped">
+<thead>
+<tr>
+<td>ID</td>
+<td>Name</td>
+<td>Price</td>
+<td>Description</td>
+<td><div class="d-flex justify-content-center">Options</div></td>
+</tr>
+</thead>
+<tbody>
+	{% for product in products %}
+	<tr>
+		<td>{{product.id}}</td>
+		<td>
+			<a href="{{ path('product_show',{id: product.id}) }}">
+				{{product.name}}
+			</a>
+		</td>
+		<td>
+            {{product.price}}
+		</td>
+        <td>
+            {{product.description}}
+		</td>
+        <td>
+            <div class="d-flex justify-content-around">
+            <a href="{{ path('product_edit',{id: product.id}) }}">Update</a>
+            <a class="text-danger" href="{{ path('product_delete',{id: product.id}) }}">Delete</a>
+            </div>
+        </td>
+	</tr>
+	{%endfor%}
+</tbody>
+</table>
+
+{% endblock %}
